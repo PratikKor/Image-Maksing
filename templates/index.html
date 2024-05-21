@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text to Image Encoder/Decoder</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/12299e2707.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+      <a href="https://github.com/PratikKor" class="logo">
+        <img
+          id="img-logo"
+          src="{{ url_for('static', filename='assets/srcc/github.png') }}"
+          alt="pratik-github"
+        />
+      </a>
+
+      <nav class="navbar links">
+        <a href="#home">home</a>
+        <a href="#about">How it Works?</a>
+        <a href="#Encoding">Try Encoding</a>
+        <a href="#Decoding">Try Decoding</a>
+        <a href="#blogs">Use Cases</a>
+      </nav>
+
+      <a href="https://github.com/PratikKor" class="logo">
+        <img
+          id="img-logo"
+          src="{{ url_for('static', filename='assets/srcc/github.png') }}"
+          alt="pratik-github"
+        />
+      </a>
+      <!-- <div class="icons">
+        <div class="fas fa-search" id="search-btn"></div>
+        <div class="fas fa-shopping-cart" id="cart-btn"></div>
+        <div class="fas fa-bars" id="menu-btn"></div>
+      </div> -->
+    </header>
+
+    <!-- home -->
+    <section class="home" id="home">
+      <div class="content">
+        <h3>Text 2 Image Converter</h3>
+        <p>
+          Convert text data into pixelized images for secure transmission, data
+          compression, and covert communication. Upload text, receive an image,
+          and decode it back to the original text.
+        </p>
+        <!-- <a href="#" class="btn">Explore Our Menu</a> -->
+      </div>
+      <video autoplay loop muted class="background-video">
+        <source src="static/assets/srcc/bg_video2.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </section>
+
+    <!-- how it works/ about -->
+    <section class="about" id="about">
+      <h1 class="heading"><span>Working</span></h1>
+      <div class="row">
+        <div class="image">
+          <video autoplay loop muted class="about-video" style="width: 100%">
+            <source
+              src="{{ url_for('static', filename='assets/srcc/bg_video.mp4') }}"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        <div class="content">
+          <h3>How does it work exactly?</h3>
+          <p>
+            The Text2Image Converter application allows you to convert text data
+            into pixelized images using the ASCII values of the text. Simply
+            upload your text, click the "Convert to Image" button to generate a
+            pixelized image, and download it to your device. To retrieve the
+            original text, upload the pixelized image and click the "Decode
+            Image" button.
+          </p>
+          <p>
+            The decoding process matches the ASCII values of the original text
+            with the pixel values in the image, ensuring accurate decoding. This
+            process can be used for secure data transmission, data compression,
+            and covert communication.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {# Encoding #}
+    <section class="Encoding" id="Encoding">
+      <h1 class="heading">Encoding</h1>
+      <div class="row">
+        <div class="content section-Encoding">
+          <form
+            class="encodingform"
+            action="/encode"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <label class="Prompttext1" for="text_input">Enter Text:</label>
+
+            <textarea
+              class="inputtextarea"
+              id="text_input"
+              name="text_input"
+              rows="4"
+              cols="50"
+            ></textarea>
+
+            <p class="Prompttext2">
+              Or Select a File with ".txt" Extension
+              <i class="fa-solid fa-file file-selection file-logo"></i>
+            </p>
+
+            <div class="inner-file-selection">
+              <input type="file" name="file" accept=".txt" /><br />
+            </div>
+
+            <button class="submit-button" type="submit">
+              <p class="textinbutton">
+                Encode Text to Image
+                <i class="fa-solid fa-arrow-rotate-right"></i>
+              </p>
+            </button>
+
+            <p></p>
+            <br />
+          </form>
+        </div>
+
+        <div class="image">
+          <div class="image-section">
+            <img
+              class="img"
+              src="{{ url_for('static', filename='assets/srcc/encoding.png') }}"
+              alt="side-img"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {# Decoding #}
+    <section class="Decoding" id="Decoding">
+      <h1 class="heading">Decoding</h1>
+      <div class="row">
+        <div class="image">
+          <div class="image-section">
+            <img
+              class="img"
+              src="{{ url_for('static', filename='assets/srcc/decoding.png') }}"
+              alt="side-img"
+            />
+          </div>
+        </div>
+
+        <div class="content section-Decoding">
+          <br />
+          <form
+            class="decodingform"
+            action="/decode"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <label class="Prompttext1" for="text_input"
+              >Select png file(encoded) to Decode:
+              <i class="fa-solid fa-photo-film file-logo"></i
+            ></label>
+
+            <br />
+            <input
+              class="input-button"
+              type="file"
+              name="file"
+              accept=".png"
+            /><br />
+            <button class="submit-button" type="submit">
+              <p class="textinbutton">
+                Decode Image to Text
+                <i class="fa-solid fa-arrow-rotate-left"></i>
+              </p>
+            </button>
+            <p></p>
+            <br />
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <div id="popup" class="popup">
+      <span class="popup-content" id="popup-text"></span>
+      <span class="close-btn" onclick="closePopup()">&times;</span>
+    </div>
+
+    <!-- Use Cases -->
+    <section class="blogs" id="blogs">
+      <h1 class="heading"><span>UseCases</span></h1>
+      <div class="box-container">
+        <div class="box">
+          <div class="image">
+            <img
+              class="img"
+              src="{{ url_for('static', filename='assets/srcc/usecase1.png') }}"
+              alt="side-img"
+            />
+          </div>
+          <div class="content">
+            <a href="#" class="title">Secure Data Transmission</a>
+            <!-- <span>by CoffeeExplorer / 15th June, 2023</span> -->
+            <p>
+              Pixelized images can securely transmit text data over insecure
+              channels by encoding text into images and decoding them at the
+              receiving end.
+            </p>
+            <!-- <a href="#" class="btn">Read More</a> -->
+          </div>
+        </div>
+
+        <div class="box">
+          <div class="image">
+            <img
+              class="img"
+              src="{{ url_for('static', filename='assets/srcc/usecase2.png') }}"
+              alt="side-img"
+            />
+          </div>
+          <div class="content">
+            <a href="#" class="title">Data Compression</a>
+            <!-- <span>by BrewMaster / 8th July, 2023</span> -->
+            <p>
+              Pixelized images can compress text data by converting ASCII values
+              into pixel values, reducing storage space and transmission
+              bandwidth.
+            </p>
+            <!-- <a href="#" class="btn">Read More</a> -->
+          </div>
+        </div>
+
+        <div class="box">
+          <div class="image">
+            <img
+              class="img"
+              src="{{ url_for('static', filename='assets/srcc/usecase3.png') }}"
+              alt="side-img"
+            />
+          </div>
+          <div class="content">
+            <a href="#" class="title">Steganography</a>
+            <!-- <span>by SweetSipper / 2nd August, 2023</span> -->
+            <p>
+              Pixelized images can hide text data within them, allowing for
+              covert communication by encoding text into images and decoding
+              them at the receiving end.
+            </p>
+            <!-- <a href="#" class="btn">Read More</a> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <section class="footer">
+      <!-- <div class="share">
+        <a href="#" class="fab fa-facebook-f"></a>
+        <a href="#" class="fab fa-x"></a>
+        <a href="#" class="fab fa-instagram"></a>
+        <a href="#" class="fab fa-linkedin"></a>
+        <a href="#" class="fab fa-pinterest"></a>
+      </div> -->
+
+      <p class="footer-text">Quick links</p>
+
+      <div class="links">
+        <a href="#home">Home</a>
+        <a href="#about">Working</a>
+        <a href="#Encoding">Encoding</a>
+        <a href="#Decoding">Decoding</a>
+        <a href="#blog">Use Cases</a>
+      </div>
+
+      <div class="credit">
+        Cerated by <span>Pratik Kor</span> and <span>Abhishek Kuber</span> as a Mini Porject
+      </div>
+    </section>
+
+    <div id="result" style="display: none"></div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

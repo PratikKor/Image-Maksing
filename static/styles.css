@@ -1,0 +1,618 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+:root{
+    --main-color:#d3ad7f;
+    --black:#13131a;
+    --bg:#010103;
+    --border:.1rem solid rgba(255,255,255,.3);
+}
+
+a{
+  text-decoration: none;
+}
+
+*{
+  font-family: 'Roboto', sans-serif;
+  margin: 0;padding: 0;
+  box-sizing: border-box;
+  outline: none;border: none;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: .3s linear;
+}
+
+html{
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-padding-top: 9rem;
+  scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar{
+  width: .8rem;
+}
+
+html::-webkit-scrollbar-track{
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb{
+  background: #fff;
+  border-radius: 5rem;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom right, #333333, #666666);
+}
+
+/* .section-Decoding{
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  padding-top: 20px;
+  border-radius: 10px;
+  width: 100%;
+  height: 250px;
+} */
+
+textarea,
+input[type="file"],
+button {
+  width: calc(100% - 20px);
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Popup */
+.popup {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  z-index: 999;
+}
+
+.popup-content {
+  display: block;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: white;
+}
+
+/* Header */
+
+.header{
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* remove the bbuttons for icons and logo and make justify content center to align all links to center */
+  padding: 1.5rem 7%;
+  border-bottom: var(--border);
+  position: fixed;
+  top: 0;left: 0;right:0;
+  z-index: 1000;
+}
+
+.header .logo img{
+  height: 3rem;
+}
+
+.header .navbar a{
+  display: inline-block;
+  margin: 0 1rem;
+  font-size: 1.6rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+.header .navbar a:hover{
+  color: var(--main-color);
+  border-bottom: .1rem solid var(--main-color);
+  padding-bottom: .5rem;
+}
+
+.header .icons div{
+  display: inline;
+  color: #fff;
+  cursor: pointer;
+  font-size: 2.5rem;
+  margin-left: 2rem;
+}
+
+.header .icons div:hover{
+  color: var(--main-color);
+
+}
+
+.header .links a{
+  border-radius: 30px;
+  padding: 1.2px 1.6px;
+  color: #fff;
+  font-size: 2rem;
+  text-decoration: none;
+}
+
+
+.header .links a:hover{
+  background-color: var(--main-color);
+}
+
+
+/* Home */
+
+.home{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  /* background: url(./assets/srcc/data-falling-from-the-right-side-of--screen-techy-sci-fi-738213748.png) no-repeat;
+  background-size:cover ;
+  background-position: center; */
+}
+
+/* video */
+.home {
+  position: relative;
+}
+
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+
+.home .content{
+  max-width: 60rem;
+  padding-left: 5%;
+}
+
+.home .content h3{
+  padding-left: 30px;
+  font-size: 6rem;
+  text-transform:capitalize;
+  color:#d3ad7f;
+  text-align: center;
+}
+
+.home .content h3:hover{
+  transform: scale(1.2);
+}
+
+.home .content p{
+  font-size: 1.7rem;
+  font-weight: lighter;
+  line-height: 1.8;
+  padding: 1rem 0;
+  padding-left: 30px;
+  color: #eee;
+  font-family: sans-serif;
+  backdrop-filter: blur(8px) saturate(99%);
+  border-radius: 15px;
+}
+
+/* about */
+
+.about .row{
+  display: flex;
+  align-items: center;
+  background: var(--black);
+  flex-wrap: wrap;
+}
+
+.about .row .image{
+  flex:1 1 45rem;
+  padding-left: 5rem;
+  padding-top: 20px ;
+  padding-bottom: 20px;
+}
+
+.about .row .image video{
+  width: 100%;
+  height: 80%;
+  padding-top: 30px;
+  padding-bottom: 15px;
+  border-radius: 30%;
+}
+.about .row .content{
+  flex:1 1 45rem;
+  padding: 2rem;
+}
+
+.about .row .content h3{
+  font-size: 3rem;
+  color: #fff;
+  text-align: center;
+}
+
+.about .row .content h3:hover{
+  transform: scale(1.1);
+}
+
+.about .row .content p{
+  font-size: 1.6rem;
+  color: #ccc;
+  padding: 1rem 0;
+  line-height: 1.8;
+  padding: 30px;
+  justify-content: center;
+}
+
+
+.heading{
+  text-align: center;
+  color: #fff;
+  text-transform:capitalize;
+  padding-bottom: 3.5rem;
+  font-size: 4rem;
+  padding-top: 2rem;
+}
+
+.heading span{
+  /* color: var(--main-color); */
+  text-transform:capitalize;
+}
+
+/* encodng */
+
+.Encoding .row{
+  display: flex;
+  align-items: center;
+  background: var(--black);
+}
+
+.Encoding .row .image{
+  flex:1 1 60rem;
+  /* padding-left: 5rem; */
+  padding-right: 20px;
+  padding-top: 20px ;
+  padding-bottom: 20px;
+  align-items: center;
+}
+
+.Encoding .row .image .image-section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Encoding .row .image .image-section .img{
+  padding-top: 30px;
+  padding-bottom: 15px;
+  border-radius: 30%;
+  height: 650px;
+  width: 80%;
+}
+
+.Encoding .row .content{
+  flex:1 1 45rem;
+  padding: 2rem;
+}
+
+.encodingform {
+  padding-left: 2rem;
+  padding-top: 15px;
+  background-color:#333333;
+  border-radius: 30px;
+  color: #fff;
+}
+
+.Encoding .row .section-Encoding{
+  padding-left: 60px;
+}
+
+.Encoding .title{
+padding-left: 43%;
+padding-bottom: 20px;
+}
+
+.Encoding .Prompttext1{
+  padding-top: 1rem;
+  padding-bottom: .5rem ;
+  color: #4CAF50;
+  font-size: 2rem;
+}
+
+.Encoding .inputtextarea{
+  border-radius: 2rem;
+  text-align:center;
+  height : 180px;
+}
+
+.Encoding .Prompttext2{
+  padding-top: 1rem;
+  font-size: 15px;
+  color: #4CAF50;
+}
+
+.Encoding .Prompttext2 .file-logo{
+  font-size: 2rem;
+  color: white;
+}
+
+.Encoding .inner-file-selection{
+  padding-top: 7px;
+  align-self: center;
+  display: inline-flex;
+  font-size: 15px;
+}
+
+.Encoding .inner-file-selection .file-selection{
+  padding-top: 5px;
+  padding-right: 13px;
+  padding-left: 5px;
+}
+
+.Encoding .submit-button{
+  padding-bottom: 20px;
+  height: 30px;
+  border-radius: 30px;
+  font-size: 15px;
+}
+
+.Encoding .submit-button .textinbutton{
+  font-size: 15px;
+  padding-top: 5px;
+}
+
+/* Decoding */
+.Decoding .row{
+  display: flex;
+  align-items: center;
+  background: var(--black);
+}
+
+.Decoding .row .image{
+  flex:1 1 60rem;
+  padding-left: 20px;
+  padding-top: 20px ;
+  padding-bottom: 20px;
+  align-items: center;
+}
+
+.Decoding .row .image .image-section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Decoding .row .image .image-section .img{
+  padding-top: 30px;
+  padding-bottom: 15px;
+  border-radius: 30%;
+  height: 650px;
+  width: 80%;
+}
+
+.Decoding .row .content{
+  flex:1 1 45rem;
+  padding: 2rem;
+}
+
+.decodingform {
+  height: 200px;
+  padding-left: 2rem;
+  padding-right: 50px;
+  padding-top: 15px;
+  background-color:#333333;
+  border-radius: 30px;
+  color: #fff;
+}
+
+.Decoding .row .section-Decoding{
+  padding-left: 30px;
+  padding-right: 130px ;
+}
+
+.Decoding .title{
+padding-left: 43%;
+padding-bottom: 20px;
+}
+
+.Decoding .Prompttext1{
+  padding-top: 1rem;
+  padding-bottom: 3rem ;
+  color: #4CAF50;
+  font-size: 2rem;
+}
+
+.Decoding .Prompttext1 .file-logo{
+  color: white;
+}
+
+.Decoding .inputtextarea{
+  border-radius: 2rem;
+  text-align:center;
+  height : 100px;
+}
+
+.Decoding .inner-file-selection{
+  align-self: center;
+  display: inline-flex;
+  font-size: 150px;
+}
+
+.Decoding .inner-file-selection .file-selection{
+  padding-top: 5px;
+  padding-right: 13px;
+  padding-left: 5px;
+}
+.Decoding .input-button{
+  font-size: 15px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.Decoding .submit-button{
+  padding-bottom: 20px;
+  height: 30px;
+  border-radius: 30px;
+}
+
+.Decoding .submit-button .textinbutton{
+  font-size: 15px;
+  padding-top: 5px;
+}
+
+/* Usecases */
+
+.blogs .box-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(30rem,1fr));
+  gap: 1.5rem;
+}
+
+.blogs .box-container .box{
+  border: var(--border);
+  background-color:#13131a;
+}
+
+.blogs .box-container .box .image{
+  height: 25rem;
+  overflow: hidden;
+  width: 100%;
+}
+
+.blogs .box-container .box .image img{
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 30px;
+}
+
+.blogs .box-container .box:hover .image img{
+  transform: scale(1.2);
+}
+
+.blogs .box-container .box .content{
+  padding: 2rem;
+}
+
+.blogs .box-container .box .content .title{
+  font-size: 2.5rem;
+  line-height: 1.5;
+  color: #fff;
+}
+
+.blogs .box-container .box .content .title:hover{
+  color: var(--main-color);
+}
+
+.blogs .box-container .box .content span{
+  color: var(--main-color);
+  display: block;
+  padding-top: 1rem;
+  font-size: 2rem;
+}
+
+.blogs .box-container .box .content p{
+  font-size: 1.6rem;
+  line-height: 1.8;
+  color: #ccc;
+  padding: 1rem 0;
+}
+
+/* Footer */
+
+.footer{
+  background: var(--black);
+  text-align: center;
+}
+
+.footer .share{
+  padding: 1rem;
+}
+
+.footer .share a{
+  text-decoration: none;
+  height: 5rem;
+  width: 5rem;
+  line-height: 5rem;
+  font-size: 2rem;
+  color: #fff;
+  border: var(--border);
+  margin:.3rem ;
+  border-radius: 50%;
+}
+
+.footer .share a:hover{
+  background-color:var(--main-color);
+}
+
+.footer .footer-text{
+  padding-top: 30px;
+  font-size: 20px ;
+  color: #eee;
+}
+
+.footer .links{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 1.3rem 0;
+  gap: 1rem;
+}
+
+.footer .links a{
+  border-radius: 30px;
+  padding: .7rem 2rem;
+  color: #fff;
+  border: var(--border);
+  font-size: 2rem;
+  text-decoration: none;
+}
+
+
+.footer .links a:hover{
+  background-color: var(--main-color);
+}
+
+.footer .credit{
+  font-size: 2rem;
+  color: #fff;
+  font-weight: lighter;
+  padding: 1.5rem;
+  text-transform: none;
+}
+
+.footer .credit span{
+  color:var(--main-color) ;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width: 768px) {
+  .content {
+    justify-content: space-between;
+  }
+}
