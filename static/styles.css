@@ -235,6 +235,15 @@ button {
   padding-bottom: 15px;
   border-radius: 30%;
 }
+
+.about .row .image .working_img{
+  width: 100%;
+  height: 80%;
+  padding-top: 30px;
+  padding-bottom: 15px;
+  border-radius: 30%;
+}
+
 .about .row .content{
   flex:1 1 45rem;
   padding: 2rem;
@@ -411,7 +420,7 @@ padding-bottom: 20px;
 }
 
 .decodingform {
-  height: 200px;
+  height: 230px;
   padding-left: 2rem;
   padding-right: 50px;
   padding-top: 15px;
