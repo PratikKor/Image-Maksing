@@ -1,0 +1,139 @@
+┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                                                                                                                      │
+│                                                                         ── [ Encoding Text to Image ] ──                                                                             │
+│                                                                                                                                                                                      │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                                                                                                                      │
+│                                                                                ── [ Workflow ] ──                                                                                    │
+│                                                                                                                                                                                      │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+1) User Input: The user can input text directly or upload a text file.
+
+2) Text Processing: The text is read from the input or file.
+
+3) Chunking Text: The text is split into chunks where each chunk size is limited by the maximum image size squared (MAX_IMAGE_SIZE^2). 
+   This ensures each image can hold a reasonable amount of text.
+
+4) Image Creation: Each chunk of text is converted into a grayscale image:
+
+   ├── Calculate the number of pixels required based on the text length.
+   ├── Determine the image width and height.
+   ├── Create a blank image with the calculated dimensions.
+   └── Populate the image pixels with the ASCII values of the characters in the text chunk.
+
+5) Saving Images: The resulting images are saved in a specified directory.
+  
+   Example:
+   --------
+  
+   Text Input: "Hello"
+     Image Size Calculation: 5 characters, thus 5 pixels needed. An image of 5x1 is created.
+     ASCII Values: H (72), e (101), l (108), l (108), o (111)
+  
+   Image Pixels:
+     ┌────┬─────┬─────┬─────┬─────┐
+     │ 72 │ 101 │ 108 │ 108 │ 111 │
+     └────┴─────┴─────┴─────┴─────┘
+
+6) Decoding Image to Text : The user uploads one or more encoded images.
+
+   ├── Image Processing: Each uploaded image is processed , Read the image as a grayscale image . Extract the pixel values and convert them back to characters.
+   ├── Text Reconstruction: Combine the decoded text from all images.
+   └── Saving Text: The resulting text is saved to a file.
+  
+   Example:
+   --------
+  
+   Image Pixels:
+     ┌─────┬─────┬─────┬─────┬─────┐
+     │  72 │ 101 │ 108 │ 108 │ 111 │
+     └─────┴─────┴─────┴─────┴─────┘
+  
+   Decoded Text: 
+     H (72), e (101), l (108), l (108), o (111) -> "Hello"
+
+┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                                                                                                                      │
+│                                                                                 ── [ Functions ] ──                                                                                  │
+│                                                                                                                                                                                      │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+                                                                                                    
+1) encode_text_to_image(text): Converts text to an image:
+
+   ├── Computes image dimensions.
+   └── Fills an image array with ASCII values of characters.
+
+2) split_text_into_chunks(text, chunk_size): Splits text into chunks of specified size.
+
+3) encode_text_file_to_images(input_text, input_file_path): Manages the entire encoding process:
+
+   ├── Reads text from input or file.
+   ├── Splits text into chunks.
+   ├── Encodes each chunk into an image.
+   └── Saves images and returns their paths.
+
+4) decode_image_to_text(encoded_img): Converts an image back to text:
+  
+   ├── Flattens the image.
+   └── Converts pixel values to characters.
+
+5) decode_image_file_to_text(input_image_paths): Manages the entire decoding process:
+
+   ├── Reads and decodes each image.
+   ├── Combines decoded texts.
+   └── Saves the final text to a file and returns the path.
+
+6) allowed_file(filename): Checks if a file has an allowed extension.
+
+┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                                                                                                                      │
+│                                                                              ~~~# Storage Efficiency #~~~                                                                            │
+│                                                                                                                                                                                      │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+1) Text File Storage:
+
+   Text files store characters as plain text, each typically using 1 byte (8 bits) per character for ASCII characters.
+   There is no inherent compression in a plain text file; each character's byte is stored as-is.
+
+2) Image File Storage:
+
+   When text is encoded into an image, each character's ASCII value is stored as a pixel's intensity in a grayscale image.
+   For example, each pixel in an 8-bit grayscale image represents a value from 0 to 255, which can be mapped to ASCII values.
+   Although the raw image data is uncompressed, image file formats (like PNG) apply compression algorithms (such as lossless compression) to reduce the file size.
+
+┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                                                                                                                      │
+│                                                                            ~~~# Compression Algorithms #~~~                                                                          │
+│                                                                                                                                                                                      │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+1) Text Compression:
+
+   Plain text files do not use compression unless explicitly compressed using tools like ZIP or GZIP.
+   This means each character's storage is not optimized for space.
+
+2) Image Compression:
+
+   Image formats like PNG use lossless compression techniques (e.g., DEFLATE) to reduce file size without losing any data.
+   These algorithms are highly efficient at compressing patterns and sequences that are common in image data, including the repetitive sequences that can occur in encoded text.
+
+Example 
+
+Let's consider a practical example:
+
+Original Text File:
+
+   Text: "Hello, this is a test message."
+   File size: Approximately 29 bytes (each character, including spaces and punctuation, uses 1 byte).
+
+Encoded Image:
+
+   Encoding the text into a 1D grayscale image with 29 pixels, each pixel representing an ASCII value.
+   The raw image data would initially be 29 bytes (one byte per pixel in an 8-bit grayscale image).
+   When saving the image as a PNG file, the PNG compression algorithm is applied:
+   ├── The repetitive nature of pixel values (similar ASCII values) is compressed efficiently.
+   └── The PNG file might end up being smaller than 29 bytes due to efficient encoding of patterns and compression.
